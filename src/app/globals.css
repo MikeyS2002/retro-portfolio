@@ -2,26 +2,236 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+@font-face {
+  font-family: "TahomaCustom";
+  src: url("/fonts/windows-xp-tahoma.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+@font-face {
+  font-family: "PressStart";
+  src: url("/fonts/PressStart2P-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+.windows-border-top {
+  border-top: 1px solid #ffffff;
+  box-shadow: 0 -1px 0 0 #DFDFDF;
+}
+
+.windows-border-left {
+  border-left: 1px solid #ffffff;
+  box-shadow: -1px 0 0 0 #DFDFDF;
+}
+
+.windows-border-right {
+  border-right: 1px solid #808080;
+  box-shadow: 1px 0 0 0 #000000;
+}
+
+.windows-border-bottom {
+  border-bottom: 1px solid #808080;
+  box-shadow: 0 1px 0 0 #000000;
+}
+
+.over-after {
+  position: relative;
+
+}
+
+.over-after:after {
+  content: " ";
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+}
+
+.windows-border {
+  position: relative;
+  border-bottom: 1px solid #000000;
+  border-right: 1px solid #000000;
+  border-top: 1px solid #DFDFDF;
+  border-left: 1px solid #DFDFDF;
+}
+
+.windows-border:after {
+  content: " ";
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-bottom: 1px solid #808080;
+  border-right: 1px solid #808080;
+  border-top: 1px solid #ffffff;
+  border-left: 1px solid #ffffff;
+}
+
+.windows-border-reverse {
+  position: relative;
+  border-top: 1px solid #000000;
+  border-left: 1px solid #000000;
+  border-bottom: 1px solid #DFDFDF;
+  border-right: 1px solid #DFDFDF;
+}
+
+.windows-border-small {
+  border-top: 1px solid #808080;
+  border-left: 1px solid #808080;
+  border-bottom: 1px solid #FFFFFF;
+  border-right: 1px solid #FFFFFF;
+}
+
+.windows-border-before {
+  position: relative;
+  border-bottom: 1px solid #000000;
+  border-right: 1px solid #000000;
+  border-top: 1px solid #DFDFDF;
+  border-left: 1px solid #DFDFDF;
+}
+
+.windows-border-before:before {
+  content: " ";
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-bottom: 1px solid #808080;
+  border-right: 1px solid #808080;
+  border-top: 1px solid #ffffff;
+  border-left: 1px solid #ffffff;
+}
+
+.windows-border-reverse {
+  position: relative;
+  border-top: 1px solid #000000;
+  border-left: 1px solid #000000;
+  border-bottom: 1px solid #DFDFDF;
+  border-right: 1px solid #DFDFDF;
+}
+
+.windows-border-reverse:after {
+  content: " ";
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-top: 1px solid #808080;
+  border-left: 1px solid #808080;
+  border-bottom: 1px solid #ffffff;
+  border-right: 1px solid #ffffff;
+}
+
+windows-border-z-index {
+  position: relative;
+}
+
+.windows-border-z-index::after {
+  content: " ";
+  position: absolute;
+  z-index: 20;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.windows-border-hover:hover {
+  position: relative;
+  border-top: 1px solid #000000;
+  border-left: 1px solid #000000;
+  border-bottom: 1px solid #DFDFDF;
+  border-right: 1px solid #DFDFDF;
+}
+
+.windows-border-hover:hover:after {
+  content: " ";
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-top: 1px solid #808080 !important;
+  border-left: 1px solid #808080 !important;
+  border-bottom: 1px solid #ffffff !important;
+  border-right: 1px solid #ffffff !important;
+}
+
+.blue-filter::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #000080;
+  mix-blend-mode: multiply;
+  opacity: 0.5;
+}
+
+::-moz-selection {
+  color: white;
+  background-color: #000080;
+}
+
+::selection {
+  color: white;
+  background-color: #000080;
+}
+
+/**
+ * This injects Tailwind's base styles and any base styles registered by
+ * plugins.
+ */
+@layer base {
+  body {
+    @apply bg-windows-background;
+  }
+
+  * {
+    @apply font-tahoma-custom;
+  }
+
+  p {
+    @apply text-lg;
+  }
+
+  .header {
+    @apply font-press-start text-[10px] tracking-tight;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
+;
+
+/**
+  * This injects Tailwind's component classes and any component classes
+  * registered by plugins.
+  */
+@tailwind components;
+
+/**
+  * This injects Tailwind's utility classes and any utility classes registered
+  * by plugins.
+  */
+@tailwind utilities;
+
+/**
+  * Use this directive to control where Tailwind injects the hover, focus,
+  * responsive, dark mode, and other variants of each class.
+  *
+  * If omitted, Tailwind will append these classes to the very end of
+  * your stylesheet by default.
+  */
+@tailwind variants;

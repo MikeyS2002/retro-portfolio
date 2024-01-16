@@ -7,11 +7,19 @@ module.exports = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      colors: {
+        'windows-background': '#008080',
+        'windows-grey': '#C0C0C0',
+        'windows-border-grey': '#DFDFDF',
+        'windows-border-white': '#DFDFDF',
+        'windows-border-dark-gray': '#808080',
+        'windows-border-black': '#000000',
+        'windows-blue': '#000080',
       },
+      fontFamily: {
+        'tahoma-custom': ['TahomaCustom', 'serif'],
+        'press-start': ['PressStart', 'serif']
+      }
     },
   },
   plugins: [],
