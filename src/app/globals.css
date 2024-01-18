@@ -169,7 +169,7 @@ windows-border-z-index {
   border-right: 1px solid #ffffff !important;
 }
 
-.blue-filter::before {
+.blue-filter-1::before {
   content: '';
   position: absolute;
   top: 0;
@@ -179,6 +179,17 @@ windows-border-z-index {
   background-color: #000080;
   mix-blend-mode: multiply;
   opacity: 0.5;
+}
+.blue-filter-2::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #000080;
+  mix-blend-mode: multiply;
+  opacity: 0.3;
 }
 
 ::-moz-selection {
