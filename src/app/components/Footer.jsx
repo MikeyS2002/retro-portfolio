@@ -3,10 +3,10 @@ import Time from "./Time";
 
 export default function Footer({ windows, onSelectWindow, selectedWindow }) {
     return (
-        <footer className="absolute bottom-0 left-0 w-full">
+        <footer className="absolute bottom-0 left-0 z-50 w-full">
             <div className="w-full p-[2px] windows-border-top justify-between flex bg-windows-grey h-10">
                 <div className="flex gap-1">
-                    <button className="flex mr-[2px] items-center h-full gap-2 px-2 py-1 windows-border windows-border-hover">
+                    <button className="flex mr-[2px] items-center h-full gap-2 px-2 py-1 windows-border button-active">
                         <img
                             className="h-full "
                             src="/images/logo.png"

@@ -68,6 +68,7 @@ export default function Desktop({
                     handleDoubleClick({
                         name: "Mike's Computer",
                         iconImg: "/images/computer.png",
+                        content: "computer",
                     })
                 }
                 onClick={() => selectIcon("Mike's Computer")}
@@ -82,6 +83,7 @@ export default function Desktop({
                     handleDoubleClick({
                         name: "My Projects",
                         iconImg: "/images/folder.png",
+                        content: "projects",
                     })
                 }
                 onClick={() => selectIcon("My Projects")}
@@ -96,6 +98,7 @@ export default function Desktop({
                     handleDoubleClick({
                         name: "Recycle Bin",
                         iconImg: "/images/bin.png",
+                        content: "bin",
                     })
                 }
                 onClick={() => selectIcon("Recycle Bin")}

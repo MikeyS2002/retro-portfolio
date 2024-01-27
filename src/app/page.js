@@ -48,14 +48,15 @@ export default function Home() {
                 highestZIndex={highestZIndex}
                 setHighestZIndex={setHighestZIndex}
             />
-            {windows.map((window) => (
+            {windows.map((w, i) => (
                 <Window
-                    key={window.name}
-                    title={window.name}
-                    onClose={() => handleClose(window.name)}
+                    key={w.name}
+                    onClose={() => handleClose(w.name)}
                     onSelectWindow={onSelectWindow}
                     selectedWindow={selectedWindow}
                     highestZIndex={highestZIndex}
+                    w={w}
+                    windowCount={i + 1}
                 />
             ))}
             <Footer
