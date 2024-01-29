@@ -2,9 +2,23 @@
 import React, { useState, useEffect } from "react";
 import Icon from "@/app/components/Icon";
 
-export default function WindowContent({ projects, setSelectedObject, w }) {
+export default function WindowContent({
+    setSelectedObject,
+    w,
+    componentRef,
+    onAdd,
+    highestZIndex,
+    setHighestZIndex,
+    onSelectWindow,
+}) {
     const [selectedIcon, setSelectedIcon] = useState(null);
     const [activeIcon, setActiveIcon] = useState(null);
+
+    const projects = [
+        { name: "Unveil", iconImg: "/images/unveil.png" },
+        { name: "Oger", iconImg: "/images/oger.png" },
+        { name: "Genvid", iconImg: "/images/genvid.png" },
+    ];
 
     const selectIcon = (iconName) => {
         setSelectedIcon(iconName);
@@ -43,29 +57,54 @@ export default function WindowContent({ projects, setSelectedObject, w }) {
         };
     }, []);
 
+    const handleIconDoubleClick = (project) => {
+        setActiveIcon(project.name);
+        setSelectedObject(project);
+        onAdd({
+            name: project.name,
+            iconImg: project.iconImg,
+            content: "project-window",
+            zIndex: highestZIndex + 1,
+        });
+        onSelectWindow({
+            name: project.name,
+            iconImg: project.iconImg,
+            content: "project-window",
+            zIndex: highestZIndex + 1,
+        });
+        setHighestZIndex(highestZIndex + 1);
+    };
+
     return (
         <div className="w-[calc(100%-4px)] h-[calc(100%-66px)] m-[2px] bg-white relative">
-            <div className="z-30 flex col-auto gap-4 p-4">
-                {projects.map((project, i) => (
-                    <Icon
-                        key={i}
-                        name={project.name}
-                        onDoubleClick={() => setActive(project.name)}
-                        onClick={() => {
-                            selectIcon(project.name);
-                            setSelectedObject(project);
-                        }}
-                        onFocus={() => {
-                            selectIcon(project.name);
-                            setSelectedObject(project);
-                        }}
-                        img={project.iconImg}
-                        isSelected={isSelected}
-                        isActive={isActive}
-                        color="black"
-                        filter="2"
-                    />
-                ))}
+            <div ref={componentRef} className="z-30 flex col-auto gap-4 p-4">
+                {w.content === "projects" && (
+                    <>
+                        {projects.map((project, i) => (
+                            <Icon
+                                on
+                                key={i}
+                                name={project.name}
+                                onDoubleClick={() =>
+                                    handleIconDoubleClick(project)
+                                }
+                                onClick={() => {
+                                    selectIcon(project.name);
+                                    setSelectedObject(project);
+                                }}
+                                onFocus={() => {
+                                    selectIcon(project.name);
+                                    setSelectedObject(project);
+                                }}
+                                img={project.iconImg}
+                                isSelected={isSelected}
+                                isActive={isActive}
+                                color="black"
+                                filter="2"
+                            />
+                        ))}
+                    </>
+                )}
             </div>
         </div>
     );

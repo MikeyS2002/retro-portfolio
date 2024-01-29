@@ -13,7 +13,11 @@ export default function WindowHeader({
                     : "bg-windows-border-dark-gray"
             }`}
         >
-            <div className="absolute w-full h-full over-after" id={id}></div>
+            <div
+                className="absolute w-full h-full over-after"
+                onDoubleClick={() => setFullScreen((prev) => !prev)}
+                id={id}
+            ></div>
             <div className="flex items-center gap-1 h-full p-[2px]">
                 <img
                     className="h-full p-px"

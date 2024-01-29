@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import WindowHeader from "@/app/components/WindowHeader";
 import WindowContent from "@/app/components/WindowContent";
 import WidowObjectCount from "./WindowObjectCount";
@@ -11,21 +11,19 @@ export default function Window({
     highestZIndex,
     w,
     windowCount,
+    onAdd,
+    setHighestZIndex,
 }) {
     const [fullScreen, setFullScreen] = useState(false);
     const [selectedObject, setSelectedObject] = useState();
     const [position, setPosition] = useState({ left: 0, top: 0 });
     const [isPositioned, setIsPositioned] = useState(false);
 
-    const projects = [
-        { name: "Unveil", iconImg: "/images/unveil.png" },
-        { name: "Oger", iconImg: "/images/oger.png" },
-        { name: "Genvid", iconImg: "/images/genvid.png" },
-    ];
-
     const selectThisWindow = () => {
         onSelectWindow({ name: w.name });
     };
+
+    const ref = useRef(0);
 
     const headerId = `window-header-${w.name}`;
     const windowId = `window-container-${w.name}`;
@@ -33,8 +31,11 @@ export default function Window({
     useDragger(headerId, windowId);
 
     useEffect(() => {
-        // Only set the position if the window has not been positioned yet
-        if (!isPositioned) {
+        if (fullScreen) {
+            // If fullScreen, position window at top-left corner
+            setPosition({ left: 0, top: 0 });
+        } else if (!isPositioned) {
+            // Position logic for non-fullscreen windows
             const initialOffset = 30;
             let initialX = window.innerWidth / 2 - 300;
             let initialY = window.innerHeight / 2 - 250;
@@ -45,10 +46,9 @@ export default function Window({
             }
 
             setPosition({ left: initialX, top: initialY });
-            setIsPositioned(true); // Mark as positioned
+            setIsPositioned(true);
         }
-    }, [windowCount, isPositioned]);
-
+    }, [windowCount, isPositioned, fullScreen]);
     return (
         <section
             style={{
@@ -77,13 +77,18 @@ export default function Window({
                     setFullScreen={setFullScreen}
                     id={headerId}
                 />
+
                 <WindowContent
-                    projects={projects}
+                    onAdd={onAdd}
+                    componentRef={ref}
+                    setHighestZIndex={setHighestZIndex}
+                    highestZIndex={highestZIndex}
                     setSelectedObject={setSelectedObject}
                     w={w}
+                    onSelectWindow={onSelectWindow}
                 />
                 <WidowObjectCount
-                    objects={projects.length}
+                    componentRef={ref}
                     w={w}
                     selectedObject={selectedObject}
                 />

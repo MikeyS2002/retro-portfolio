@@ -50,6 +50,8 @@ export default function Home() {
             />
             {windows.map((w, i) => (
                 <Window
+                    onAdd={addWindow}
+                    setHighestZIndex={setHighestZIndex}
                     key={w.name}
                     onClose={() => handleClose(w.name)}
                     onSelectWindow={onSelectWindow}

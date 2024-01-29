@@ -1,10 +1,14 @@
 "use client";
-
-export default function WidowObjectCount({ objects, w, selectedObject }) {
+export default function WidowObjectCount({ componentRef, w, selectedObject }) {
     return (
         <div className="grid grid-cols-2 mx-[2px] gap-[2px]">
             <div className="windows-border-small">
-                <p className="px-2">{objects} object(s)</p>
+                <p className="px-2">
+                    {componentRef && componentRef.current
+                        ? componentRef.current.children.length
+                        : 0}{" "}
+                    object(s)
+                </p>
             </div>
             <div className="windows-border-small">
                 <div className="flex items-center gap-1 p-[2px]">
